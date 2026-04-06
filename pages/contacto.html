@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Mr. Ahorro</title>
+    <meta name="description" content="Ponte en contacto con el equipo de soporte de Mr. Ahorro.">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="page">
+    <header class="header">
+        <div class="header__container">
+            <a href="../index.html" class="header__logo">Mr. Ahorro</a>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="../index.html" class="nav__link">Inicio</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="nosotros.html" class="nav__link">Nosotros</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="contacto.html" class="nav__link nav__link--active">Contacto</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="content-section">
+            <h1 class="content-section__title">Contáctanos</h1>
+            <p class="content-section__text">
+                ¿Tienes alguna duda, sugerencia o encontraste un problema? Llena el siguiente formulario y nuestro equipo de soporte se pondrá en contacto contigo lo antes posible.
+            </p>
+            
+            <form action="#" class="form" onsubmit="event.preventDefault(); alert('¡Mensaje enviado correctamente!');">
+                <div class="form__group">
+                    <label for="name" class="form__label">Nombre completo</label>
+                    <input type="text" id="name" class="form__input" placeholder="Ej. Juan Pérez" required>
+                </div>
+                
+                <div class="form__group">
+                    <label for="email" class="form__label">Correo electrónico</label>
+                    <input type="email" id="email" class="form__input" placeholder="tucorreo@ejemplo.com" required>
+                </div>
+
+                <div class="form__group">
+                    <label for="message" class="form__label">Mensaje</label>
+                    <textarea id="message" class="form__textarea" placeholder="Escribe aquí tus dudas o comentarios..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn--primary">Enviar mensaje</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p class="footer__text">&copy; 2026 Mr. Ahorro. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

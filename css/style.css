@@ -1,0 +1,394 @@
+/* 
+  Variables globales del sistema de diseño (Tokens). 
+  Centralizamos los colores, sombreados y medidas principales para facilitar 
+  el mantenimiento y mantener la coherencia en todo el proyecto.
+*/
+:root {
+  /* Paleta de colores para el Modo Claro (Por defecto) */
+  --bg-color: #f8fafc;
+  --surface-color: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --border-color: #e2e8f0;
+  
+  /* Sistema de sombras para crear profundidad visual en las tarjetas y contenedores */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  
+  /* Radios de borde estandarizados para un diseño más amigable y moderno */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Adaptación automática al Modo Oscuro. 
+       Si el sistema operativo del usuario prefiere colores oscuros, sobreescribimos 
+       las variables para garantizar una lectura cómoda y un diseño adaptado a la noche. */
+    --bg-color: #0f172a;
+    --surface-color: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --primary-color: #818cf8;
+    --primary-hover: #a5b4fc;
+    --border-color: #334155;
+    
+    /* Ajustamos la opacidad de las sombras debido a que en fondos oscuros necesitan 
+       ser más pronunciadas para generar la misma percepción de elevación. */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.8), 0 4px 6px -4px rgb(0 0 0 / 0.6);
+  }
+}
+
+/* 
+  Reinicio de estilos base del navegador (Reset CSS).
+  Aseguramos que todos los elementos partan del mismo estado sin importar desde 
+  qué navegador se visiten.
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 
+  Estructura fundamental del documento.
+  Definimos la tipografía principal del proyecto y preparamos el cuerpo 
+  para ocupar al menos el tamaño completo de la pantalla (100vh).
+*/
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Transición global para que los cambios de tema (Claro/Oscuro) sean fluidos */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Configuración general para los enlaces interactivos */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+/* Eliminamos los puntos de las listas por defecto para utilizarlas estructuralmente */
+ul {
+  list-style: none;
+}
+
+/* =========================================================
+   Arquitectura BEM (Block, Element, Modifier)
+   A partir de aquí estructuramos el código visual en componentes.
+========================================================= */
+
+/* Bloque contenedor principal de la página, empleado para gestionar el layout vertical y el pie de página */
+.page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* 
+  Encabezado Principal (Header).
+  Se mantiene fijo en la parte superior mediante position: sticky 
+  para que el usuario nunca pierda la barra de navegación al desplazarse hacia abajo.
+*/
+.header {
+  background-color: var(--surface-color);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.3s ease;
+}
+
+.header__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  letter-spacing: -0.02em;
+}
+
+/* Navegación principal del sitio (Navbar) */
+.nav__list {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav__link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* Estado activo y efecto al situar el cursor (Hover) */
+.nav__link:hover,
+.nav__link--active {
+  color: var(--primary-color);
+}
+
+/* 
+  Optimización del encabezado para dispositivos móviles. 
+  Cambiamos la dirección de los elementos a formato columna cuando el espacio es reducido.
+*/
+@media (max-width: 768px) {
+  .header__container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .nav__list {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* 
+  Área principal de contenido.
+  Centraliza el espacio de trabajo con un ancho máximo estipulado.
+*/
+.main {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  width: 100%;
+}
+
+/* Sección de introducción en la página de inicio (Hero Section) */
+.hero {
+  text-align: center;
+  padding: 3rem 0 5rem 0;
+}
+
+.hero__title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+}
+
+.hero__subtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* 
+  Componente global de botones.
+  Estandariza los espaciados, bordes y transiciones de las llamadas a la acción.
+*/
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+/* Botón de acción primaria (ej. Enviar, Comprar) */
+.btn--primary {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Efecto de elevación al posicionar el ratón encima del botón primario */
+.btn--primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  color: #ffffff;
+}
+
+/* Botón de acción secundaria, utilizado para acciones alternativas menos invasivas */
+.btn--secondary {
+  background-color: transparent;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn--secondary:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+/* 
+  Contenedor de tarjeta de características usando CSS Grids.
+  Permite que las cajas se auto-ajusten según la resolución de la pantalla.
+*/
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  background-color: var(--surface-color);
+  padding: 2.5rem 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.feature-card__icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+.feature-card__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.feature-card__text {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* 
+  Contenedores de texto amplios para páginas de información (Ej. Nosotros, Soporte).
+*/
+.content-section {
+  background-color: var(--surface-color);
+  padding: 3rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content-section__title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+.content-section__text {
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.content-section__list {
+  margin-top: 1.5rem;
+  padding-left: 1.5rem;
+  list-style: disc;
+  color: var(--text-secondary);
+}
+
+.content-section__list-item {
+  margin-bottom: 0.5rem;
+}
+
+/* 
+  Estructura global de formularios.
+  Organiza los campos de entrada verticales y establece sus márgenes intermedios.
+*/
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form__label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.form__input,
+.form__textarea {
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Focalización del campo activo. Resalta visualmente dónde está posicionado el usuario */
+.form__input:focus,
+.form__textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.form__textarea {
+  resize: vertical; /* Permite únicamente el redimensionado vertical para no romper el contenedor */
+  min-height: 150px;
+}
+
+/* 
+  Pie inferior (Footer).
+  Componente situado al fondo del documento con información legal y complementaria.
+*/
+.footer {
+  background-color: var(--surface-color);
+  border-top: 1px solid var(--border-color);
+  padding: 2.5rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+.footer__text {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
