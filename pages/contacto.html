@@ -5,17 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto | Mr. Ahorro</title>
     <meta name="description" content="Ponte en contacto con el equipo de soporte de Mr. Ahorro.">
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 Free — íconos vectoriales -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="page">
+
+    <!-- ════════════════════════════════════════════════════
+         ENCABEZADO / NAVEGACIÓN
+    ════════════════════════════════════════════════════ -->
     <header class="header">
         <div class="header__container">
-            <a href="../index.html" class="header__logo">Mr. Ahorro</a>
-            <nav class="nav">
+            <a href="../index.html" class="header__logo">
+                <i class="fa-solid fa-piggy-bank"></i> Mr. Ahorro
+            </a>
+            <button class="nav__toggle" id="navToggle"
+                    aria-label="Abrir menú de navegación"
+                    aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav" id="navMenu" aria-label="Navegación principal">
                 <ul class="nav__list">
                     <li class="nav__item">
                         <a href="../index.html" class="nav__link">Inicio</a>
@@ -32,35 +44,145 @@
     </header>
 
     <main class="main">
-        <section class="content-section">
-            <h1 class="content-section__title">Contáctanos</h1>
-            <p class="content-section__text">
-                ¿Tienes alguna duda, sugerencia o encontraste un problema? Llena el siguiente formulario y nuestro equipo de soporte se pondrá en contacto contigo lo antes posible.
-            </p>
-            
-            <form action="#" class="form" onsubmit="event.preventDefault(); alert('¡Mensaje enviado correctamente!');">
-                <div class="form__group">
-                    <label for="name" class="form__label">Nombre completo</label>
-                    <input type="text" id="name" class="form__input" placeholder="Ej. Juan Pérez" required>
-                </div>
-                
-                <div class="form__group">
-                    <label for="email" class="form__label">Correo electrónico</label>
-                    <input type="email" id="email" class="form__input" placeholder="tucorreo@ejemplo.com" required>
+        <section class="content-section" style="max-width: 900px;">
+            <h1 class="content-section__title">
+                <i class="fa-solid fa-envelope" style="margin-right:0.5rem;"></i>
+                Contáctanos
+            </h1>
+
+            <!-- Layout dividido: info de contacto + formulario -->
+            <div class="contact-layout">
+
+                <!-- Panel izquierdo: información de contacto -->
+                <div class="contact-info">
+                    <div>
+                        <h2 class="contact-info__title">Hablemos</h2>
+                        <p class="contact-info__text">
+                            ¿Tienes alguna duda, sugerencia o encontraste un problema?
+                            Estamos aquí para ayudarte. Llena el formulario o escríbenos
+                            directamente.
+                        </p>
+                    </div>
+
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <div class="contact-item__icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="contact-item__label">Correo electrónico</p>
+                                <p class="contact-item__value">soporte@mrahorro.com.ec</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item__icon">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <p class="contact-item__label">Horario de atención</p>
+                                <p class="contact-item__value">Lun – Vie, 9:00 – 18:00</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item__icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <p class="contact-item__label">Ubicación</p>
+                                <p class="contact-item__value">Ciudad de Guayaquil, EC</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item__icon">
+                                <i class="fa-solid fa-reply"></i>
+                            </div>
+                            <div>
+                                <p class="contact-item__label">Tiempo de respuesta</p>
+                                <p class="contact-item__value">Menos de 24 horas</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="form__group">
-                    <label for="message" class="form__label">Mensaje</label>
-                    <textarea id="message" class="form__textarea" placeholder="Escribe aquí tus dudas o comentarios..." required></textarea>
+                <!-- Panel derecho: formulario -->
+                <div>
+                    <form action="#" class="form"
+                          onsubmit="event.preventDefault(); alert('¡Mensaje enviado correctamente! Te contactaremos pronto.');">
+                        <div class="form__group">
+                            <label for="name" class="form__label">Nombre completo</label>
+                            <input type="text" id="name" class="form__input"
+                                   placeholder="Ej. Juan Pérez" required>
+                        </div>
+                        <div class="form__group">
+                            <label for="email" class="form__label">Correo electrónico</label>
+                            <input type="email" id="email" class="form__input"
+                                   placeholder="tucorreo@ejemplo.com" required>
+                        </div>
+                        <div class="form__group">
+                            <label for="subject" class="form__label">Asunto</label>
+                            <input type="text" id="subject" class="form__input"
+                                   placeholder="¿En qué podemos ayudarte?">
+                        </div>
+                        <div class="form__group">
+                            <label for="message" class="form__label">Mensaje</label>
+                            <textarea id="message" class="form__textarea"
+                                      placeholder="Escribe aquí tus dudas o comentarios..."
+                                      required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary">
+                            <i class="fa-solid fa-paper-plane"></i>&nbsp; Enviar mensaje
+                        </button>
+                    </form>
                 </div>
 
-                <button type="submit" class="btn btn--primary">Enviar mensaje</button>
-            </form>
+            </div>
         </section>
     </main>
 
     <footer class="footer">
-        <p class="footer__text">&copy; 2026 Mr. Ahorro. Todos los derechos reservados.</p>
+        <div class="footer__grid">
+            <div class="footer__brand">
+                <a href="../index.html" class="footer__logo">
+                    <i class="fa-solid fa-piggy-bank"></i> Mr. Ahorro
+                </a>
+                <p class="footer__brand-text">
+                    Tu aliado para alcanzar la libertad financiera.
+                </p>
+                <div class="footer__social">
+                    <a href="#" class="footer__social-link" aria-label="Twitter / X">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    <a href="#" class="footer__social-link" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" class="footer__social-link" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            <nav class="footer__nav" aria-label="Plataforma">
+                <h3 class="footer__nav-title">Plataforma</h3>
+                <ul class="footer__nav-list">
+                    <li><a href="../index.html" class="footer__nav-link">Inicio</a></li>
+                    <li><a href="../index.html#caracteristicas" class="footer__nav-link">Características</a></li>
+                    <li><a href="../index.html#como-funciona" class="footer__nav-link">Cómo funciona</a></li>
+                </ul>
+            </nav>
+            <nav class="footer__nav" aria-label="Compañía">
+                <h3 class="footer__nav-title">Compañía</h3>
+                <ul class="footer__nav-list">
+                    <li><a href="nosotros.html" class="footer__nav-link">Nosotros</a></li>
+                    <li><a href="contacto.html" class="footer__nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer__bottom">
+            <p class="footer__text">
+                &copy; <span id="year"></span> Mr. Ahorro. Todos los derechos reservados.
+            </p>
+        </div>
     </footer>
+
+    <script src="../js/main.js"></script>
 </body>
 </html>
